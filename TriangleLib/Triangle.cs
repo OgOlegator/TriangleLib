@@ -14,8 +14,18 @@ namespace TriangleLib
         /// </summary>
         private readonly List<double> _sides;
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="a">Сторона 1</param>
+        /// <param name="b">Сторона 2</param>
+        /// <param name="c">Сторона 3</param>
+        /// <exception cref="ArgumentException">Некорректно заданы стороны треугольника</exception>
         public Triangle(double a, double b, double c)
         {
+            if (a <= 0 || b <= 0 || c <= 0)
+                throw new ArgumentException("Некорректно заданы стороны треугольника");
+
             _sides = new List<double> { a, b, c }
                 .OrderByDescending(side => side)
                 .ToList();

@@ -24,7 +24,7 @@ namespace TriangleLib.Tests
         [InlineData(1, 3, 1)]
         [InlineData(100, 300, 199)]
         [InlineData(1499, 3000, 1501)]
-        public void GetTriangleType_CheckTriangleExists_error(double a, double b, double c)
+        public void GetTriangleType_CheckTriangleExists_exception(double a, double b, double c)
         {
             Assert.Throws<ArgumentException>(() => new Triangle(a, b, c).GetTriangleType());
         }
@@ -43,6 +43,15 @@ namespace TriangleLib.Tests
             var result = new Triangle(a, b, c).IsExists();
 
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(1, 0, 2.5)]
+        [InlineData(1, 10, -2.5)]
+        [InlineData(-0.0002, 1, 1)]
+        public void Constructor_IncorrectInputParameters_exception(double a, double b, double c)
+        {
+            Assert.Throws<ArgumentException>(() => new Triangle(a, b, c));
         }
     }
 }
